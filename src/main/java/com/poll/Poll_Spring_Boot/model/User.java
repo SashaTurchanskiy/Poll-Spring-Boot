@@ -1,5 +1,6 @@
 package com.poll.Poll_Spring_Boot.model;
 
+import com.poll.Poll_Spring_Boot.dtos.UserDto;
 import com.poll.Poll_Spring_Boot.enums.UserRole;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +31,16 @@ public class User implements UserDetails {
     private String lastName;
 
     private UserRole userRole;
+
+    public UserDto getUserDto(){
+        UserDto userDto = new UserDto();
+        userDto.setId(this.id);
+        userDto.setEmail(this.email);
+        userDto.setFirstName(this.firstName);
+        userDto.setLastName(this.lastName);
+        userDto.setUserRole(this.userRole);
+        return userDto;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
